@@ -1,0 +1,74 @@
+<meta charset="UTF-8">
+
+	<input/>
+	<button>Compare com os meus números da sorte</button>
+
+<script>
+	
+	function sorteia(){
+	 return Math.round(Math.random() * 10);
+	}
+	
+	function sorteiaNumeros(quantidade){
+	
+	var numerosDaSorte = [];
+	
+	var numero = 1;
+	
+	while(numero  <= quantidade){
+	
+	var numeroAleatorio = sorteia();
+	
+		if(numeroAleatorio !== 0){
+				
+		var acertouErrou = false;
+		
+		for(var posicao = 0; posicao < numerosDaSorte.length; posicao++){
+		
+		if(numerosDaSorte[posicao] == numeroAleatorio){
+		acertouErrou = true;
+		break;
+		}
+		}
+		
+		if(acertouErrou == false){
+		numerosDaSorte.push(numeroAleatorio);
+		numero++;
+			}
+		}
+		}
+	return numerosDaSorte;
+	}
+	
+	var numerosDaSorte = sorteiaNumeros(3);
+	
+	var caixa = document.querySelector("input");
+	caixa.focus();
+	
+	function verifica(){
+	
+	var acertouErrou = false;
+	
+	for(var posicao = 0; posicao < numerosDaSorte.length; posicao++){
+	
+	if(caixa.value == numerosDaSorte[posicao]){
+	
+	alert("Você ACERTOU, este é o meu número da sorte!!!");
+	acertouErrou = true;
+	break;
+		}
+	}
+	
+	if(acertouErrou == false){
+	
+		alert("Você ERROU, meu número da sorte não é este!!!");
+	}
+	
+	caixa.value = "";
+	caixa.focus();
+	}
+	var button = document.querySelector("button");
+	
+	button.onclick = verifica;
+
+</script>
